@@ -16,25 +16,27 @@ A professional, agentic AI platform for **automated deep research and structured
   ## 🏗️ Architecture
   
   ```mermaid
-  flowchart LR
-    UI[Streamlit Dark UI] --> QA[Query Analyzer]
-    QA --> WR[Web Researcher (Tavily)]
-    WR --> CA[Content Analyzer (Gemini)]
-    CA -->|Parallel| PRG[Parallel Report Generator]
-    PRG --> REP[Structured Markdown Report]
-    REP --> DL[Download .md]
-    REP --> VW[In-app View]
-  
-    subgraph Observability
-      TL[Agent Timeline]:::obs
-      AN[AI Action Narrative]:::obs
-    end
-  
-    QA -.logs .-> TL
-    WR -.logs .-> TL
-    CA -.logs .-> TL
-    PRG -.logs .-> TL
-    TL --> AN
+flowchart LR
+  classDef obs fill:#1f2937,stroke:#60a5fa,stroke-width:1px,color:#e5e7eb;
+  UI[Streamlit Dark UI] --> QA[Query Analyzer]
+  QA --> WR[Web Researcher (Tavily)]
+  WR --> CA[Content Analyzer (Gemini)]
+  CA --> PRG[Parallel Report Generator]
+  PRG --> REP[Structured Markdown Report]
+  REP --> DL[Download .md]
+  REP --> VW[In-app View]
+
+  subgraph Observability
+    class TL,AN obs
+    TL[Agent Timeline]
+    AN[AI Action Narrative]
+  end
+
+  QA ..> TL
+  WR ..> TL
+  CA ..> TL
+  PRG ..> TL
+  TL --> AN
   
     classDef obs fill:#1f2937,stroke:#60a5fa,stroke-width:1px,color:#e5e7eb;
   ```
