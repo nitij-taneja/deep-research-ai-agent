@@ -15,36 +15,29 @@ A professional, agentic AI platform for **automated deep research and structured
 
   ## 🏗️ Architecture
   
-```mermaid
-flowchart LR;
-    %% --- Define a custom class for observability nodes ---
-    classDef obs fill:#1f2937,stroke:#60a5fa,stroke-width:1px,color:#e5e7eb;
+  ```text
+  +----------------------+           +------------------+           +-------------------------+
+  |  Streamlit Dark UI   |  --->     |  Query Analyzer  |  --->     |  Web Researcher (Tavily)|
+  +----------------------+           +------------------+           +-------------------------+
+                                                                     |
+                                                                     v
+                                                      +------------------------------+
+                                                      |  Content Analyzer (Gemini)   |
+                                                      +------------------------------+
+                                                                     |
+                                                                     v
+                                                    +-------------------------------+
+                                                    |  Parallel Report Generator    |
+                                                    +-------------------------------+
+                                                                  |
+                                                                  v
+                                            +-------------------------------------------+
+                                            |  Structured Markdown Report (View/Download)|
+                                            +-------------------------------------------+
 
-    %% --- Main Application Flow ---
-    UI[Streamlit Dark UI] --> QA[Query Analyzer];
-    QA --> WR[Web Researcher (Tavily)];
-    WR --> CA[Content Analyzer (Gemini)];
-    CA --> PRG[Parallel Report Generator];
-    PRG --> REP[Structured Markdown Report];
-    REP --> DL[Download .md];
-    REP --> VW[In-app View];
-
-    %% --- Observability Subgraph ---
-    subgraph Observability
-        direction LR;
-        TL[Agent Timeline];
-        AN[AI Action Narrative];
-    end;
-    
-    %% --- Apply the 'obs' class to the observability nodes ---
-    class TL,AN obs;
-
-    %% --- Link main flow to observability ---
-    QA ..> TL;
-    WR ..> TL;
-    CA ..> TL;
-    PRG ..> TL;
-    TL --> AN;
+  Observability:
+    - Agent Timeline (LangGraph/Tavily/Gemini events)
+    - Live Agent Report (Gemini) summarizing progress
   ```
   ### Notes on Visuals & Observability
 
