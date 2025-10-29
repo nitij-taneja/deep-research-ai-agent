@@ -15,30 +15,36 @@ A professional, agentic AI platform for **automated deep research and structured
 
   ## 🏗️ Architecture
   
-  ```mermaid
-flowchart LR
-  classDef obs fill:#1f2937,stroke:#60a5fa,stroke-width:1px,color:#e5e7eb;
-  UI[Streamlit Dark UI] --> QA[Query Analyzer]
-  QA --> WR[Web Researcher (Tavily)]
-  WR --> CA[Content Analyzer (Gemini)]
-  CA --> PRG[Parallel Report Generator]
-  PRG --> REP[Structured Markdown Report]
-  REP --> DL[Download .md]
-  REP --> VW[In-app View]
-
-  subgraph Observability
-    class TL,AN obs
-    TL[Agent Timeline]
-    AN[AI Action Narrative]
-  end
-
-  QA ..> TL
-  WR ..> TL
-  CA ..> TL
-  PRG ..> TL
-  TL --> AN
-  
+```mermaid
+flowchart LR;
+    %% --- Define a custom class for observability nodes ---
     classDef obs fill:#1f2937,stroke:#60a5fa,stroke-width:1px,color:#e5e7eb;
+
+    %% --- Main Application Flow ---
+    UI[Streamlit Dark UI] --> QA[Query Analyzer];
+    QA --> WR[Web Researcher (Tavily)];
+    WR --> CA[Content Analyzer (Gemini)];
+    CA --> PRG[Parallel Report Generator];
+    PRG --> REP[Structured Markdown Report];
+    REP --> DL[Download .md];
+    REP --> VW[In-app View];
+
+    %% --- Observability Subgraph ---
+    subgraph Observability
+        direction LR;
+        TL[Agent Timeline];
+        AN[AI Action Narrative];
+    end;
+    
+    %% --- Apply the 'obs' class to the observability nodes ---
+    class TL,AN obs;
+
+    %% --- Link main flow to observability ---
+    QA ..> TL;
+    WR ..> TL;
+    CA ..> TL;
+    PRG ..> TL;
+    TL --> AN;
   ```
   ### Notes on Visuals & Observability
 
@@ -51,15 +57,18 @@ flowchart LR
 
 ```
 research-ai-agent/
-{{ ... }}
-├── app.py                    # Main Streamlit application
-├── research_agent.py         # LangGraph research workflow
-├── report_generator.py       # Parallel report generation
-├── .env                      # API keys (not in git)
-├── requirements.txt          # Python dependencies
-├── .streamlit/
-│   └── config.toml          # Streamlit configuration
-└── README.md                # This file
+│
+├── 📄 app.py                # The main Streamlit web application
+├── 🧠 research_agent.py      # Core LangGraph agent workflow
+├── ✍️ report_generator.py   # Module for parallel report generation
+├── 📊 progress.py           # Module for tracking agent progress
+├── 🔑 .env                  # (Not in git) Stores API keys for services
+├── 📦 requirements.txt     # All Python dependencies for setup
+│
+├── 📁 .streamlit/
+│   └── ⚙️ config.toml       # Streamlit theme and app configuration
+│
+└── L- 📖 README.md             # This readme file
 ```
 
 ## 🔧 Core Components
