@@ -5,6 +5,7 @@ A professional, agentic AI platform for **automated deep research and structured
 ![Demo](https://github.com/nitij-taneja/deep-research-ai-agent/blob/main/VID_20251029185139_V1.gif)
 
 Video: https://drive.google.com/file/d/1lP8jjhbhY9xwZifkO95IHL2EoXjzukaQ/view?usp=drivesdk
+
 Live Project: https://deep-research-ai-agent-by-nitijtaneja.streamlit.app/
   ## 🎯 Features
 
