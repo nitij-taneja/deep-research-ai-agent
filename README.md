@@ -1,7 +1,7 @@
 # Deep Research AI Agent
 
 A professional, agentic AI platform for **automated deep research and structured report generation**. Built with modern frameworks: **LangGraph**, **Gemini**, and **Tavily**.
-
+Video: https://github.com/nitij-taneja/deep-research-ai-agent/blob/main/VID_20251029185139_V1.mp4
   ## 🎯 Features
 
   - **LangGraph-Powered Agent**: Multi-step research workflow with intelligent query analysis
